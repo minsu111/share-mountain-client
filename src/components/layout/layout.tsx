@@ -20,7 +20,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Header />
       {children}
       <NavigationBar />
-      <Footer />
     </LayoutContainer>
   );
 };
