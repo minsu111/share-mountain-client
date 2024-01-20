@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NaviBarContainer = styled.div`
-  position: absolute;
+  position: sticky;
   bottom: 0;
   width: 100%;
   height: 6.5vh;
   border-top: 0.1vw solid #e1e1e1;
+  background-color: #fff;
 `;
 
 const BtnContainer = styled.div`

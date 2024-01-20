@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PostHeaderContainer = styled.div`
-  width: 94%;
+  width: 98%;
   height: 6vh;
-  border: 0.1vw solid #e1e1e1;
-  padding: 0 3%;
+  border-bottom: 0.1vw solid #e1e1e1;
+  padding: 0 1%;
 `;
 
 const ProfileWrapper = styled.div`
@@ -14,11 +14,11 @@ const ProfileWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1vw;
+  gap: 0.3em;
 `;
 
 const ProfileImgWrapper = styled.div`
-  width: 10%;
+  width: 8%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -35,10 +35,15 @@ const ProfileNameWrapper = styled.div`
 `;
 const ProfileNameText = styled.span`
   width: 100%;
+  font-size: 0.9em;
   color: #474747;
 `;
 
-const PostHeader = () => {
+interface userNickNameType {
+  userNickName: string;
+}
+
+const PostHeader = ({ userNickName }: userNickNameType) => {
   return (
     <PostHeaderContainer>
       <ProfileWrapper>
@@ -49,7 +54,7 @@ const PostHeader = () => {
           />
         </ProfileImgWrapper>
         <ProfileNameWrapper>
-          <ProfileNameText>광교산엄홍길</ProfileNameText>
+          <ProfileNameText>{userNickName}</ProfileNameText>
         </ProfileNameWrapper>
       </ProfileWrapper>
     </PostHeaderContainer>
