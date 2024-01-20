@@ -6,6 +6,7 @@ import PostBottomBar from './postBottomBar';
 import MountainCard from './mountainCard';
 
 import PostList from '../../data/post.json';
+import DivideLine from '../common/divide';
 
 const Post = () => {
   return (
@@ -15,11 +16,12 @@ const Post = () => {
           <PostHeader userNickName={c.userNickName} />
           <PostImgSlider postingImg={c.postImg} />
           <PostBody postBody={c.postBody} />
-          <MountainCard mountain={c.postMountain} />
+          <MountainCard mountain={c.mountainInfo} />
           <PostBottomBar
             heart={c.heart}
             postingDate={c.postingDate}
           />
+          <DivideLine />
         </div>
       ))}
     </>

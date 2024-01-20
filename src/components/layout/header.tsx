@@ -24,8 +24,8 @@ const Header = () => {
     <HeaderContainer>
       {location.pathname === '/home' && (
         <Logo
-          src="/assets/images/share-mountain.png"
-          alt="로고이미지"
+          src='/assets/images/share-mountain.svg'
+          alt='로고이미지'
         />
       )}
     </HeaderContainer>

@@ -12,6 +12,11 @@ const LayoutContainer = styled.div`
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
