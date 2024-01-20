@@ -1,0 +1,51 @@
+[
+  {
+    "mountainInfo": {
+      "mountainId": 1,
+      "mountainName": "광교산",
+      "mountainImgURL": "/assets/images/1_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 2,
+      "mountainName": "아차산",
+      "mountainImgURL": "/assets/images/2_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 3,
+      "mountainName": "오대산",
+      "mountainImgURL": "/assets/images/3_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 4,
+      "mountainName": "지리산",
+      "mountainImgURL": "/assets/images/3_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 5,
+      "mountainName": "청계산",
+      "mountainImgURL": "/assets/images/3_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 6,
+      "mountainName": "관악산",
+      "mountainImgURL": "/assets/images/3_1.jpeg"
+    }
+  },
+  {
+    "mountainInfo": {
+      "mountainId": 7,
+      "mountainName": "북한산",
+      "mountainImgURL": "/assets/images/3_1.jpeg"
+    }
+  }
+]

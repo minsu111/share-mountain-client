@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
@@ -15,6 +16,8 @@ const Card = styled.div`
 
   border-radius: 0.5em;
   border: 1px solid #e1e1e1;
+
+  cursor: pointer;
 `;
 
 const CardContentsWrapper = styled.div`
@@ -59,6 +62,7 @@ const MountainLevel = styled.div``;
 
 interface MountainType {
   mountain: {
+    mountainId: number;
     mountainName: string;
     mountainAddress: string;
     mountainLevel: string;
@@ -67,8 +71,13 @@ interface MountainType {
 }
 
 const MountainCard = ({ mountain }: MountainType) => {
+  const navigate = useNavigate();
+  const handleMountainCardBtn = () => {
+    navigate(`/mountain/${mountain.mountainId}`);
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={handleMountainCardBtn}>
       <Card>
         <CardContentsWrapper>
           <CardImgWrapper>
