@@ -9,6 +9,7 @@ const NaviBarContainer = styled.div`
   height: 6.5vh;
   border-top: 0.1vw solid #e1e1e1;
   background-color: #fff;
+  z-index: 10;
 `;
 
 const BtnContainer = styled.div`
