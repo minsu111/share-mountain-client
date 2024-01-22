@@ -22,7 +22,10 @@ const MountainList = () => {
   return (
     <MountainListContainer>
       {MountainData.map((c) => (
-        <MountainBtn mountainInfo={c.mountainInfo} />
+        <MountainBtn
+          mountainInfo={c.mountainInfo}
+          key={c.mountainInfo.mountainId}
+        />
       ))}
     </MountainListContainer>
   );

@@ -19,11 +19,16 @@ const LayoutContainer = styled.div`
   }
 `;
 
+const ContentsContainer = styled.div`
+  width: 100%;
+  height: 86.5vh;
+`;
+
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <LayoutContainer>
       <Header />
-      {children}
+      <ContentsContainer>{children}</ContentsContainer>
       <NavigationBar />
     </LayoutContainer>
   );
