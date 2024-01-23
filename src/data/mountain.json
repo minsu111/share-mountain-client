@@ -4,6 +4,7 @@
       "mountainId": 1,
       "mountainName": "광교산",
       "mountainLevel": "582m",
+      "mountainAddress": "경기도 용인시 수지구 고기동 산52-3",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/1_1.jpeg"
     }
@@ -13,6 +14,7 @@
       "mountainId": 2,
       "mountainName": "아차산",
       "mountainLevel": "295m",
+      "mountainAddress": "서울 광진구 영화사로 135",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/2_1.jpeg"
     }
@@ -22,6 +24,7 @@
       "mountainId": 3,
       "mountainName": "오대산",
       "mountainLevel": "1,565m",
+      "mountainAddress": "광원리 75-6",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/3_1.jpeg"
     }
@@ -31,6 +34,7 @@
       "mountainId": 4,
       "mountainName": "지리산",
       "mountainLevel": "",
+      "mountainAddress": "경상남도 함양군 마천면 추성리",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/3_1.jpeg"
     }
@@ -40,6 +44,7 @@
       "mountainId": 5,
       "mountainName": "청계산",
       "mountainLevel": "",
+      "mountainAddress": "경기 과천시 막계동",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/3_1.jpeg"
     }
@@ -49,6 +54,7 @@
       "mountainId": 6,
       "mountainName": "관악산",
       "mountainLevel": "",
+      "mountainAddress": "경기도 과천시 자하동길 62",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/3_1.jpeg"
     }
@@ -58,6 +64,7 @@
       "mountainId": 7,
       "mountainName": "북한산",
       "mountainLevel": "",
+      "mountainAddress": "",
       "mountainLikes": 3000,
       "mountainImgURL": "/assets/images/3_1.jpeg"
     }

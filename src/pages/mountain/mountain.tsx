@@ -15,7 +15,7 @@ const Mountain = () => {
   return (
     <>
       <MountainHeader mountainInfo={mountainData.mountainInfo} />
-      <NaverMap />
+      <NaverMap mountainAddress={mountainData.mountainInfo.mountainAddress} />
     </>
   );
 };
