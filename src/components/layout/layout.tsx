@@ -12,16 +12,16 @@ const LayoutContainer = styled.div`
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ContentsContainer = styled.div`
   width: 100%;
   height: 86.5vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {

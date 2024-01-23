@@ -1,6 +1,7 @@
 import React from 'react';
-import Post from '../../components/home/post';
 import styled from 'styled-components';
+import Feed from '../../components/home/feed';
+
 import MountainList from '../../components/home/mountainList';
 
 const HomeContainer = styled.div`
@@ -17,7 +18,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <MountainList />
-      <Post />
+      <Feed />
     </HomeContainer>
   );
 };

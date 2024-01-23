@@ -5,6 +5,24 @@ const MapContainer = styled.div`
   width: 100%;
 `;
 
+const MountainAddressWrapper = styled.div`
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    margin: 0 2%;
+  }
+
+  span {
+    padding-top: 1%;
+    color: #667080;
+    font-size: 0.9em;
+  }
+`;
+
 interface mountainAddressType {
   mountainAddress?: string;
 }
@@ -45,12 +63,13 @@ const NaverMap = ({ mountainAddress }: mountainAddressType) => {
 
   useEffect(() => {
     const initMap = () => {
-      let map = null;
-      let marker = null;
+      // let map = null;
+      // const marker = null;
 
-      map = new naver.maps.Map('map', {
+      new naver.maps.Map('map', {
         center: new naver.maps.LatLng(lat, lng),
         zoom: 12,
+        scrollWheel: false,
       });
 
       // marker = new naver.maps.Marker({
@@ -78,6 +97,13 @@ const NaverMap = ({ mountainAddress }: mountainAddressType) => {
         id='map'
         style={mapStyle}
       />
+      <MountainAddressWrapper>
+        <img
+          src='/assets/images/location-marker.svg'
+          alt='주소:'
+        />
+        <span>{mountainAddress}</span>
+      </MountainAddressWrapper>
     </MapContainer>
   );
 };

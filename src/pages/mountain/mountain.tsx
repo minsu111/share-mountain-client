@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import MountainHeader from '../../components/mountain/mountainHeader';
 import NaverMap from '../../components/mountain/mountainMap';
+import MountainPost from '../../components/mountain/mountainPost';
+import DivideLine from '../../components/common/divide';
 
 import MountainData from '../../data/mountain.json';
 
@@ -16,6 +18,8 @@ const Mountain = () => {
     <>
       <MountainHeader mountainInfo={mountainData.mountainInfo} />
       <NaverMap mountainAddress={mountainData.mountainInfo.mountainAddress} />
+      <DivideLine />
+      <MountainPost />
     </>
   );
 };

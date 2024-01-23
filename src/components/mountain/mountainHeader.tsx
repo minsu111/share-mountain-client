@@ -5,6 +5,7 @@ const MountainHeaderContainer = styled.div`
   width: 390px;
   height: 14vh;
   border-bottom: 1px solid #e1e1e1;
+  background-color: #fff;
 
   display: flex;
   justify-content: flex-end;
