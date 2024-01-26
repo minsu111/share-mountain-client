@@ -35,6 +35,7 @@ const MountainBtnImg = styled.div`
     height: 100%;
     border-radius: 100%;
     border-top: 0.1vw solid #e1e1e1;
+    box-shadow: 1px 1px 1px #b2b2b2;
   }
 `;
 

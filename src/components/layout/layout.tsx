@@ -6,22 +6,22 @@ import Footer from './footer';
 
 const LayoutContainer = styled.div`
   position: absolute;
+  top: 0;
   width: 390px;
   height: 100vh;
   border: 0.1vw solid #e1e1e1;
-  top: 0;
   left: 50%;
   transform: translate(-50%, 0);
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ContentsContainer = styled.div`
   width: 100%;
   height: 86.5vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => {
