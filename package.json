@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/navermaps": "^3.7.4",
+    "axios": "^1.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
@@ -30,5 +31,6 @@
     "file-loader": "^6.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

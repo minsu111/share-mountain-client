@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MountainBtn from './mountainBtn';
 import styled from 'styled-components';
-
-import MountainData from '../../data/mountain.json';
+import { origin_URL } from '../../App';
+import axios from 'axios';
 
 const MountainListContainer = styled.div`
   width: 100%;
@@ -18,15 +18,44 @@ const MountainListContainer = styled.div`
   }
 `;
 
+interface mountainDataType {
+  mountainId: number;
+  mountainName: string;
+  mountainLevel: string;
+  mountainAddress: string;
+  mountainLikes: number;
+}
+
 const MountainList = () => {
+  const [mountainData, setMountainData] = useState<mountainDataType>();
+
+  useEffect(() => {
+    const getMountainData = async () => {
+      try {
+        const response = await axios.get(`${origin_URL}/mountain`);
+        console.log(response.data);
+        setMountainData(response.data);
+      } catch (error) {
+        console.error('Error fetching mountain data:', error);
+      }
+    };
+    getMountainData();
+  }, []);
+
   return (
     <MountainListContainer>
-      {MountainData.map((c) => (
-        <MountainBtn
-          mountainInfo={c.mountainInfo}
-          key={c.mountainInfo.mountainId}
-        />
-      ))}
+      {mountainData?.map(
+        (c: {
+          mountainId: number;
+          mountainName?: string;
+          mountainImgURL?: string;
+        }) => (
+          <MountainBtn
+            mountainInfo={c}
+            key={c.mountainId}
+          />
+        )
+      )}
     </MountainListContainer>
   );
 };

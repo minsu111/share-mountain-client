@@ -6,10 +6,10 @@ import Footer from './footer';
 
 const LayoutContainer = styled.div`
   position: absolute;
+  top: 0;
   width: 390px;
   height: 100vh;
   border: 0.1vw solid #e1e1e1;
-  top: 0;
   left: 50%;
   transform: translate(-50%, 0);
 `;

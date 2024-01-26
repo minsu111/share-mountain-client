@@ -55,9 +55,8 @@ const MountainLikes = styled.div`
 interface mountainInfoType {
   mountainInfo: {
     mountainName: string;
-    mountainLevel: string;
+    mountainLevel: number;
     mountainLikes: number;
-    mountainImgURL: string;
   };
 }
 
