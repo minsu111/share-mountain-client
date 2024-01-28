@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Feed from '../home/feed';
-import UpLoadPost from './upLoadPost';
+import UpLoadPostBtn from './upLoadBtn';
 
 import PostList from '../../data/post.json';
 
@@ -48,7 +48,7 @@ const MountainPost = () => {
           <span>{mountainPostData.length}개</span>
         </HeaderContentsWrapper>
       </MountainPostHeader>
-      {mountainPostData.length > 0 ? <Feed /> : <UpLoadPost />}
+      {mountainPostData.length > 0 ? <Feed /> : <UpLoadPostBtn />}
     </MountainPostContainer>
   );
 };

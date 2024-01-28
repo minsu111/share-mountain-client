@@ -23,11 +23,12 @@ interface mountainDataType {
   mountainName: string;
   mountainLevel: string;
   mountainAddress: string;
+  mountainImgURL: string;
   mountainLikes: number;
 }
 
 const MountainList = () => {
-  const [mountainData, setMountainData] = useState<mountainDataType>();
+  const [mountainData, setMountainData] = useState<mountainDataType[]>();
 
   useEffect(() => {
     const getMountainData = async () => {
@@ -44,18 +45,12 @@ const MountainList = () => {
 
   return (
     <MountainListContainer>
-      {mountainData?.map(
-        (c: {
-          mountainId: number;
-          mountainName?: string;
-          mountainImgURL?: string;
-        }) => (
-          <MountainBtn
-            mountainInfo={c}
-            key={c.mountainId}
-          />
-        )
-      )}
+      {mountainData?.map((c: mountainDataType) => (
+        <MountainBtn
+          mountainInfo={c}
+          key={c.mountainId}
+        />
+      ))}
     </MountainListContainer>
   );
 };

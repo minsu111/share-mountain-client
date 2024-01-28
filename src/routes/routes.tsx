@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from '../components/layout/layout';
 import Home from '../pages/home/home';
 import Mountain from '../pages/mountain/mountain';
+import UploadPost from '../pages/uploadPost/uploadPost';
+import UploadMountain from '../pages/admin/uploadMountain';
 
 const AppRouter = () => {
   return (
@@ -16,6 +18,14 @@ const AppRouter = () => {
           <Route
             path='/mountain/:id'
             element={<Mountain />}
+          />
+          <Route
+            path='/upload'
+            element={<UploadPost />}
+          />
+          <Route
+            path='/upload/mountain'
+            element={<UploadMountain />}
           />
         </Routes>
       </Layout>

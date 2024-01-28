@@ -17,7 +17,7 @@ const UpLoadBtn = styled.button`
   cursor: pointer;
 `;
 
-const UpLoadPost = () => {
+const UpLoadPostBtn = () => {
   return (
     <UpLoadPostContainer>
       <UpLoadBtn>게시물 올리기</UpLoadBtn>
@@ -25,4 +25,4 @@ const UpLoadPost = () => {
   );
 };
 
-export default UpLoadPost;
+export default UpLoadPostBtn;
