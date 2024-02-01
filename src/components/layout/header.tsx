@@ -27,6 +27,11 @@ const BackBtnWrapper = styled.div`
   justify-content: left;
   align-items: center;
   padding: 0 4%;
+
+  p {
+    font-weight: 600;
+    padding: 0 4%;
+  }
 `;
 
 const BackBtn = styled.div`
@@ -40,6 +45,16 @@ const BackBtn = styled.div`
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  let headerText = '';
+
+  switch (location.pathname) {
+    case '/upload/post':
+      headerText = '게시물 올리기';
+      break;
+    default:
+      headerText = '';
+  }
 
   return (
     <>
@@ -58,6 +73,7 @@ const Header = () => {
               alt='뒤로가기'
             />
           </BackBtn>
+          <p>{headerText}</p>
         </BackBtnWrapper>
       )}
     </>
