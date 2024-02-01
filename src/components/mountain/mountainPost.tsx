@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Feed from '../home/feed';
 import UpLoadPostBtn from './upLoadBtn';
 
-import PostList from '../../data/post.json';
-
 const MountainPostContainer = styled.div`
   width: 100%;
 `;
@@ -35,20 +33,14 @@ const HeaderContentsWrapper = styled.div`
 `;
 
 const MountainPost = () => {
-  const { id } = useParams();
-  const mountainPostData = PostList.filter(
-    (v) => v.mountainInfo.mountainId === Number(id)
-  );
+  // const { id } = useParams();
+  // const mountainPostData = PostList.filter(
+  //   (v) => v.mountainInfo._id === Number(id)
+  // );
 
   return (
     <MountainPostContainer>
-      <MountainPostHeader>
-        <HeaderContentsWrapper>
-          <div>게시물</div>
-          <span>{mountainPostData.length}개</span>
-        </HeaderContentsWrapper>
-      </MountainPostHeader>
-      {mountainPostData.length > 0 ? <Feed /> : <UpLoadPostBtn />}
+      <Feed />
     </MountainPostContainer>
   );
 };

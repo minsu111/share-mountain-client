@@ -6,7 +6,7 @@ const PostInput = styled.input`
   display: none;
 `;
 
-const UploadMountain = () => {
+const AddMountain = () => {
   return (
     <div>
       <form
@@ -45,7 +45,6 @@ const UploadMountain = () => {
               id='img1'
               name='img1'
               accept='image/*'
-              multiple
             />
           </label>
         </div>
@@ -55,4 +54,4 @@ const UploadMountain = () => {
   );
 };
 
-export default UploadMountain;
+export default AddMountain;

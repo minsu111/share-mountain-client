@@ -10,7 +10,7 @@ const MountainListContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3%;
+  /* gap: 3%; */
   overflow-x: auto;
 
   &::-webkit-scrollbar {
@@ -19,7 +19,7 @@ const MountainListContainer = styled.div`
 `;
 
 interface mountainDataType {
-  mountainId: number;
+  _id: string;
   mountainName: string;
   mountainLevel: string;
   mountainAddress: string;
@@ -48,7 +48,7 @@ const MountainList = () => {
       {mountainData?.map((c: mountainDataType) => (
         <MountainBtn
           mountainInfo={c}
-          key={c.mountainId}
+          key={c._id}
         />
       ))}
     </MountainListContainer>

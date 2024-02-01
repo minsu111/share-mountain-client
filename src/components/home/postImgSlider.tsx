@@ -10,20 +10,18 @@ const PostImgContainer = styled.div`
 `;
 
 interface PostingImgType {
-  imageId: number;
-  imageURL: string;
-  alt: string;
+  postImg: string[];
 }
 
-const PostImgSlider = ({ postingImg }: { postingImg: PostingImgType[] }) => {
+const PostImgSlider = ({ postImg }: PostingImgType) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   console.log('currentIndex', currentIndex);
 
-  const renderSlides = postingImg.map((image: PostingImgType) => (
-    <div key={image.alt}>
+  const renderSlides = postImg.map((image: string, i) => (
+    <div key={image[i]}>
       <img
-        src={image.imageURL}
-        alt={image.alt}
+        src={image}
+        alt='image'
       />
     </div>
   ));
@@ -39,7 +37,7 @@ const PostImgSlider = ({ postingImg }: { postingImg: PostingImgType[] }) => {
         showArrows={false}
         showStatus={false}
         showThumbs={false}
-        selectedItem={postingImg[currentIndex]}
+        selectedItem={postImg[currentIndex]}
         onChange={handleChange}
         emulateTouch={true}
         preventMovementUntilSwipeScrollTolerance={true}

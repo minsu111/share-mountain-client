@@ -4,7 +4,7 @@ import Layout from '../components/layout/layout';
 import Home from '../pages/home/home';
 import Mountain from '../pages/mountain/mountain';
 import UploadPost from '../pages/uploadPost/uploadPost';
-import UploadMountain from '../pages/admin/uploadMountain';
+import AddMountain from '../pages/admin/addMountain';
 
 const AppRouter = () => {
   return (
@@ -20,12 +20,12 @@ const AppRouter = () => {
             element={<Mountain />}
           />
           <Route
-            path='/upload'
+            path='/upload/post'
             element={<UploadPost />}
           />
           <Route
             path='/upload/mountain'
-            element={<UploadMountain />}
+            element={<AddMountain />}
           />
         </Routes>
       </Layout>
