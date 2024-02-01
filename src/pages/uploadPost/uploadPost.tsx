@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { origin_URL } from '../../App';
 import axios from 'axios';
+import Button from '../../components/common/buttons';
+import TextArea from '../../components/upload/textArea';
 
 const PostInput = styled.input`
   display: none;
@@ -41,7 +43,7 @@ const UploadPost = () => {
         encType='multipart/form-data'
       >
         {mountainData?.map((c: mountainDataType) => (
-          <div>
+          <div key={c._id}>
             <input
               type='radio'
               name='select_mountain'
@@ -62,14 +64,17 @@ const UploadPost = () => {
             multiple
           />
         </div>
-        <div>
-          <div>본문을 입력해주세요.</div>
-          <textarea
-            id='post_text'
-            name='post_text'
-          ></textarea>
-        </div>
-        <input type='submit' />
+        <TextArea
+          id='post_text'
+          name='post_text'
+          placeholder='본문을 입력해주세요.'
+        />
+
+        <Button
+          type={'submit'}
+          btnWidth={'long'}
+          btnText={'게시물 올리기'}
+        />
       </form>
     </div>
   );
