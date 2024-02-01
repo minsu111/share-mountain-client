@@ -2,9 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Feed from '../home/feed';
-import UpLoadPost from './upLoadPost';
-
-import PostList from '../../data/post.json';
+import UpLoadPostBtn from './upLoadBtn';
 
 const MountainPostContainer = styled.div`
   width: 100%;
@@ -35,20 +33,14 @@ const HeaderContentsWrapper = styled.div`
 `;
 
 const MountainPost = () => {
-  const { id } = useParams();
-  const mountainPostData = PostList.filter(
-    (v) => v.mountainInfo.mountainId === Number(id)
-  );
+  // const { id } = useParams();
+  // const mountainPostData = PostList.filter(
+  //   (v) => v.mountainInfo._id === Number(id)
+  // );
 
   return (
     <MountainPostContainer>
-      <MountainPostHeader>
-        <HeaderContentsWrapper>
-          <div>게시물</div>
-          <span>{mountainPostData.length}개</span>
-        </HeaderContentsWrapper>
-      </MountainPostHeader>
-      {mountainPostData.length > 0 ? <Feed /> : <UpLoadPost />}
+      <Feed />
     </MountainPostContainer>
   );
 };

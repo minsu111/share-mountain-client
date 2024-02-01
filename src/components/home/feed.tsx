@@ -1,50 +1,106 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import axios from 'axios';
+
 import PostHeader from './postHeader';
 import PostImgSlider from './postImgSlider';
 import PostBody from './postBody';
 import PostBottomBar from './postBottomBar';
 import MountainCard from './mountainCard';
-
-import PostList from '../../data/post.json';
 import DivideLine from '../common/divide';
 
+import { origin_URL } from '../../App';
+import Post from './post';
+import styled from 'styled-components';
+import UpLoadPostBtn from '../mountain/upLoadBtn';
+
+const MountainPostHeader = styled.div`
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+`;
+
+const HeaderContentsWrapper = styled.div`
+  width: 100%;
+  height: 50%;
+  color: #474747;
+  display: flex;
+  align-items: flex-end;
+
+  div {
+    font-size: 1.4em;
+    font-weight: 500;
+    padding: 0 2% 0 3%;
+  }
+
+  span {
+    font-size: 1em;
+  }
+`;
+
+interface postDataType {
+  _id: string;
+  userNickName: string;
+  postImg: string[];
+  postBody: string;
+  postDate: string;
+  mountainInfo: {
+    _id: string;
+    mountainName: string;
+    mountainLevel: string;
+    mountainAddress: string;
+    mountainImgURL: string;
+  };
+}
+
 const Feed = () => {
+  const [postData, setPostData] = useState<postDataType[]>();
   const { id } = useParams();
-  const mountainPostData = PostList.filter(
-    (v) => v.mountainInfo.mountainId === Number(id)
-  );
+  const mountainPostData = postData?.filter((v) => v.mountainInfo._id === id);
 
   const location = useLocation();
 
+  useEffect(() => {
+    const getPostData = async () => {
+      try {
+        const response = await axios.get(`${origin_URL}/posts`);
+        console.log(response.data);
+        setPostData(response.data);
+      } catch (error) {
+        console.error('Error fetching mountain data:', error);
+      }
+    };
+    getPostData();
+  }, []);
+
   return (
     <>
-      {location.pathname === '/home'
-        ? PostList.map((c) => (
-            <div key={c.postId}>
-              <PostHeader userNickName={c.userNickName} />
-              <PostImgSlider postingImg={c.postImg} />
-              <PostBody postBody={c.postBody} />
-              <MountainCard mountain={c.mountainInfo} />
-              <PostBottomBar
-                heart={c.heart}
-                postingDate={c.postingDate}
-              />
-              <DivideLine />
-            </div>
-          ))
-        : mountainPostData.map((c) => (
-            <div key={c.postId}>
-              <PostHeader userNickName={c.userNickName} />
-              <PostImgSlider postingImg={c.postImg} />
-              <PostBody postBody={c.postBody} />
-              <PostBottomBar
-                heart={c.heart}
-                postingDate={c.postingDate}
-              />
-              <DivideLine />
-            </div>
-          ))}
+      {location.pathname === '/home' ? (
+        postData?.map((post) => (
+          <div key={post._id}>
+            <Post postData={post} />
+          </div>
+        ))
+      ) : (
+        <div>
+          <MountainPostHeader>
+            <HeaderContentsWrapper>
+              <div>게시물</div>
+              <span>{mountainPostData?.length}개</span>
+            </HeaderContentsWrapper>
+          </MountainPostHeader>
+          {mountainPostData?.length === 0 ? (
+            <UpLoadPostBtn />
+          ) : (
+            mountainPostData?.map((post) => (
+              <div key={post._id}>
+                <Post postData={post} />
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </>
   );
 };

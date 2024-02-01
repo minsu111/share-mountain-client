@@ -9,7 +9,6 @@ import axios from 'axios';
 import { origin_URL } from '../../App';
 
 interface mountainDataType {
-  mountainId: number;
   mountainName: string;
   mountainLevel: string;
   mountainAddress: string;

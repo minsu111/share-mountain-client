@@ -10,7 +10,7 @@ const MountainListContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3%;
+  /* gap: 3%; */
   overflow-x: auto;
 
   &::-webkit-scrollbar {
@@ -19,15 +19,16 @@ const MountainListContainer = styled.div`
 `;
 
 interface mountainDataType {
-  mountainId: number;
+  _id: string;
   mountainName: string;
   mountainLevel: string;
   mountainAddress: string;
+  mountainImgURL: string;
   mountainLikes: number;
 }
 
 const MountainList = () => {
-  const [mountainData, setMountainData] = useState<mountainDataType>();
+  const [mountainData, setMountainData] = useState<mountainDataType[]>();
 
   useEffect(() => {
     const getMountainData = async () => {
@@ -44,18 +45,12 @@ const MountainList = () => {
 
   return (
     <MountainListContainer>
-      {mountainData?.map(
-        (c: {
-          mountainId: number;
-          mountainName?: string;
-          mountainImgURL?: string;
-        }) => (
-          <MountainBtn
-            mountainInfo={c}
-            key={c.mountainId}
-          />
-        )
-      )}
+      {mountainData?.map((c: mountainDataType) => (
+        <MountainBtn
+          mountainInfo={c}
+          key={c._id}
+        />
+      ))}
     </MountainListContainer>
   );
 };

@@ -62,7 +62,7 @@ const MountainLevel = styled.div``;
 
 interface MountainType {
   mountain: {
-    mountainId: number;
+    _id: string;
     mountainName: string;
     mountainAddress: string;
     mountainLevel: string;
@@ -73,8 +73,9 @@ interface MountainType {
 const MountainCard = ({ mountain }: MountainType) => {
   const navigate = useNavigate();
   const handleMountainCardBtn = () => {
-    navigate(`/mountain/${mountain.mountainId}`);
+    navigate(`/mountain/${mountain._id}`);
   };
+  const mountainLevel = Number(mountain.mountainLevel).toLocaleString();
 
   return (
     <CardContainer onClick={handleMountainCardBtn}>
@@ -86,7 +87,7 @@ const MountainCard = ({ mountain }: MountainType) => {
           <CardTextWrapper>
             <MountainName>{mountain.mountainName}</MountainName>
             <MountainAddress>{mountain.mountainAddress}</MountainAddress>
-            <MountainLevel>{mountain.mountainLevel}</MountainLevel>
+            <MountainLevel>{mountainLevel}m</MountainLevel>
           </CardTextWrapper>
         </CardContentsWrapper>
       </Card>

@@ -48,7 +48,7 @@ const MountainName = styled.div`
 
 interface MountainInfoType {
   mountainInfo: {
-    mountainId: number;
+    _id: string;
     mountainName: string;
     mountainImgURL: string;
   };
@@ -57,7 +57,7 @@ interface MountainInfoType {
 const MountainBtn = ({ mountainInfo }: MountainInfoType) => {
   const navigate = useNavigate();
   const handleMountainBtn = () => {
-    navigate(`/mountain/${mountainInfo.mountainId}`);
+    navigate(`/mountain/${mountainInfo._id}`);
   };
 
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const UpLoadPostContainer = styled.div`
@@ -17,12 +18,15 @@ const UpLoadBtn = styled.button`
   cursor: pointer;
 `;
 
-const UpLoadPost = () => {
+const UpLoadPostBtn = () => {
+  const navigate = useNavigate();
   return (
     <UpLoadPostContainer>
-      <UpLoadBtn>게시물 올리기</UpLoadBtn>
+      <UpLoadBtn onClick={() => navigate('/upload/post')}>
+        게시물 올리기
+      </UpLoadBtn>
     </UpLoadPostContainer>
   );
 };
 
-export default UpLoadPost;
+export default UpLoadPostBtn;

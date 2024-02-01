@@ -55,17 +55,18 @@ const MountainLikes = styled.div`
 interface mountainInfoType {
   mountainInfo: {
     mountainName: string;
-    mountainLevel: number;
+    mountainLevel: string;
     mountainLikes: number;
   };
 }
 
 const MountainHeader = ({ mountainInfo }: mountainInfoType) => {
+  const mountainLevel = Number(mountainInfo.mountainLevel).toLocaleString();
   return (
     <MountainHeaderContainer>
       <MountainInfo>
         <div>{mountainInfo.mountainName}</div>
-        <span>{mountainInfo.mountainLevel}</span>
+        <span>{mountainLevel}m</span>
       </MountainInfo>
       <MountainLikes>
         <img src='/assets/images/like.svg' />
