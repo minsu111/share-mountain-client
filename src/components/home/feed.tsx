@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
-
-import PostHeader from './postHeader';
-import PostImgSlider from './postImgSlider';
-import PostBody from './postBody';
-import PostBottomBar from './postBottomBar';
-import MountainCard from './mountainCard';
-import DivideLine from '../common/divide';
-
 import { origin_URL } from '../../App';
-import Post from './post';
 import styled from 'styled-components';
+
+import Post from './post';
 import UpLoadPostBtn from '../mountain/upLoadBtn';
 
 const MountainPostHeader = styled.div`
@@ -78,7 +71,7 @@ const Feed = () => {
     <>
       {location.pathname === '/home' ? (
         postData?.map((post) => (
-          <div key={post._id}>
+          <div key={post.mountainInfo._id}>
             <Post postData={post} />
           </div>
         ))
@@ -94,7 +87,7 @@ const Feed = () => {
             <UpLoadPostBtn />
           ) : (
             mountainPostData?.map((post) => (
-              <div key={post._id}>
+              <div key={post.mountainInfo._id}>
                 <Post postData={post} />
               </div>
             ))

@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ButtonContainer = styled.div`
-  width: 100%;
-  text-align: center;
-`;
-const ButtonBox = styled.button<{ btnWidth: 'long' | 'short' }>`
+const ButtonBox = styled.button<{ btnwidth: 'long' | 'short' }>`
   all: unset;
-  width: ${(props) => (props.btnWidth === 'long' ? '94%' : '30%')};
+  width: ${(props) => (props.btnwidth === 'long' ? '92%' : '30%')};
+  margin: 0 4%;
   height: 2.5em;
   border-radius: 0.5em;
   background-color: #000;
@@ -23,14 +20,12 @@ interface BtnPropsType {
 }
 const Button = ({ type, btnWidth, btnText }: BtnPropsType) => {
   return (
-    <ButtonContainer>
-      <ButtonBox
-        type={type}
-        btnWidth={btnWidth}
-      >
-        {btnText}
-      </ButtonBox>
-    </ButtonContainer>
+    <ButtonBox
+      type={type}
+      btnwidth={btnWidth}
+    >
+      {btnText}
+    </ButtonBox>
   );
 };
 

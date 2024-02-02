@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
@@ -10,14 +10,14 @@ const CardContainer = styled.div`
   align-items: center;
 `;
 
-const Card = styled.div`
+const Card = styled.div<{ path: string }>`
   width: 92%;
   height: 85%;
 
   border-radius: 0.5em;
   border: 1px solid #e1e1e1;
 
-  cursor: pointer;
+  cursor: ${(props) => (props.path === '/upload/post' ? 'default' : 'pointer')};
 `;
 
 const CardContentsWrapper = styled.div`
@@ -61,37 +61,45 @@ const MountainAddress = styled.div`
 const MountainLevel = styled.div``;
 
 interface MountainType {
-  mountain: {
-    _id: string;
-    mountainName: string;
-    mountainAddress: string;
-    mountainLevel: string;
-    mountainImgURL: string;
-  };
+  mountain:
+    | {
+        _id: string;
+        mountainName: string;
+        mountainAddress: string;
+        mountainLevel: string;
+        mountainImgURL: string;
+      }
+    | undefined;
 }
 
 const MountainCard = ({ mountain }: MountainType) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const handleMountainCardBtn = () => {
-    navigate(`/mountain/${mountain._id}`);
+    location.pathname !== '/upload/post' &&
+      navigate(`/mountain/${mountain?._id}`);
   };
-  const mountainLevel = Number(mountain.mountainLevel).toLocaleString();
+  const mountainLevel = Number(mountain?.mountainLevel).toLocaleString();
 
   return (
-    <CardContainer onClick={handleMountainCardBtn}>
-      <Card>
-        <CardContentsWrapper>
-          <CardImgWrapper>
-            <CardImg src={mountain.mountainImgURL} />
-          </CardImgWrapper>
-          <CardTextWrapper>
-            <MountainName>{mountain.mountainName}</MountainName>
-            <MountainAddress>{mountain.mountainAddress}</MountainAddress>
-            <MountainLevel>{mountainLevel}m</MountainLevel>
-          </CardTextWrapper>
-        </CardContentsWrapper>
-      </Card>
-    </CardContainer>
+    <>
+      {mountain === undefined ? null : (
+        <CardContainer onClick={handleMountainCardBtn}>
+          <Card path={location.pathname}>
+            <CardContentsWrapper>
+              <CardImgWrapper>
+                <CardImg src={mountain.mountainImgURL} />
+              </CardImgWrapper>
+              <CardTextWrapper>
+                <MountainName>{mountain.mountainName}</MountainName>
+                <MountainAddress>{mountain.mountainAddress}</MountainAddress>
+                <MountainLevel>{mountainLevel}m</MountainLevel>
+              </CardTextWrapper>
+            </CardContentsWrapper>
+          </Card>
+        </CardContainer>
+      )}
+    </>
   );
 };
 
