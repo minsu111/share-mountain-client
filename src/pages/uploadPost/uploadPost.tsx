@@ -24,6 +24,29 @@ const ImgButtonLabel = styled.label`
   cursor: pointer;
 `;
 
+const PreviewImgContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  padding: 0 4%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3.5%;
+`;
+
+const PreviewImgBox = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 0.5em;
+`;
+const PreviewImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5em;
+`;
+
 interface mountainDataType {
   _id: string;
   mountainId: number;
@@ -37,7 +60,6 @@ interface mountainDataType {
 const UploadPost = () => {
   const [mountainData, setMountainData] = useState<mountainDataType[]>([]);
   const [selectedMountain, setSelectedMountain] = useState<mountainDataType>();
-  // const [postImg, setPostImg] = useState<File[]>([]);
   const [previewImg, setPreviewImg] = useState<(string | ArrayBuffer | null)[]>(
     []
   );
@@ -83,11 +105,11 @@ const UploadPost = () => {
       const fileReaders: FileReader[] = [];
       const previews: (string | ArrayBuffer | null)[] = [];
 
-      Array.from(fileArr).forEach((file, index) => {
+      Array.from(fileArr).forEach((file, i) => {
         const fileReader = new FileReader();
 
         fileReader.onload = function () {
-          previews[index] = fileReader.result;
+          previews[i] = fileReader.result;
           setPreviewImg([...previews]);
         };
 
@@ -119,16 +141,21 @@ const UploadPost = () => {
         <MountainCard mountain={selectedMountain} />
 
         <div>
-          <div>
-            {previewImg &&
-              previewImg.map((img, index) => (
-                <img
-                  key={index}
-                  src={img ? img.toString() : ''}
-                  alt={`preview-img-${index}`}
-                />
+          {previewImg.length > 0 ? (
+            <PreviewImgContainer>
+              {previewImg.map((img, i) => (
+                <PreviewImgBox>
+                  <PreviewImg
+                    key={i}
+                    src={img ? img.toString() : ''}
+                    alt={`preview-img-${i}`}
+                  />
+                </PreviewImgBox>
               ))}
-          </div>
+            </PreviewImgContainer>
+          ) : (
+            ''
+          )}
           <ImgButtonLabel htmlFor='img2'>사진 선택하기</ImgButtonLabel>
           <PostInput
             type='file'
