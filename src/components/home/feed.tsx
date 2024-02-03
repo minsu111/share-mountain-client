@@ -86,7 +86,7 @@ const Feed = () => {
           {mountainPostData?.length === 0 ? (
             <UpLoadPostBtn />
           ) : (
-            mountainPostData?.map((post) => (
+            mountainPostData?.map((post, i) => (
               <div key={post.mountainInfo._id}>
                 <Post postData={post} />
               </div>

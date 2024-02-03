@@ -16,7 +16,7 @@ const ImgButtonLabel = styled.label`
   width: 92%;
   line-height: 2.5em;
   height: 2.5em;
-  margin: 0 4%;
+  margin: 2% 4%;
   border-radius: 0.5em;
   background-color: #667080;
   color: #fff;
@@ -26,7 +26,7 @@ const ImgButtonLabel = styled.label`
 
 const PreviewImgContainer = styled.div`
   width: 100%;
-  height: 100px;
+  height: 70px;
   padding: 0 4%;
   display: flex;
   justify-content: flex-start;

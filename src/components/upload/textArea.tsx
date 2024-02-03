@@ -10,7 +10,7 @@ const TextAreaBox = styled.textarea`
   margin: 4%;
   padding: 3%;
   height: 8em;
-  background-color: #e2e2e2;
+  background-color: #e1e1e1;
   border-radius: 0.5em;
 `;
 
