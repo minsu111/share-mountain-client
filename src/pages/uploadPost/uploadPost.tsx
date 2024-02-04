@@ -26,7 +26,7 @@ const ImgButtonLabel = styled.label`
 
 const PreviewImgContainer = styled.div`
   width: 100%;
-  height: 70px;
+  height: 90px;
   padding: 0 4%;
   display: flex;
   justify-content: flex-start;
@@ -98,6 +98,7 @@ const UploadPost = () => {
   //   fileArr && fileRead.readAsDataURL(fileArr[0]);
   // }
 
+  //  여러 장의 이미지 업로드
   function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     const fileArr = e.target.files;
 
@@ -117,6 +118,12 @@ const UploadPost = () => {
         fileReaders.push(fileReader);
       });
     }
+  }
+
+  function removeImg(index: number) {
+    const removePreviewImg = [...previewImg];
+    removePreviewImg.splice(index, 1);
+    setPreviewImg(removePreviewImg);
   }
 
   return (
@@ -150,6 +157,12 @@ const UploadPost = () => {
                     src={img ? img.toString() : ''}
                     alt={`preview-img-${i}`}
                   />
+                  <div onClick={() => removeImg(i)}>
+                    <img
+                      src='/assets/images/close.svg'
+                      alt='삭제'
+                    />
+                  </div>
                 </PreviewImgBox>
               ))}
             </PreviewImgContainer>
