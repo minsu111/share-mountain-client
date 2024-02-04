@@ -10,7 +10,7 @@ const PostInput = styled.input`
   display: none;
 `;
 
-const ImgButtonLabel = styled.label`
+const ImgButtonLabel = styled.label<{ previewNum: number }>`
   display: inline-block;
   vertical-align: middle;
   width: 92%;
@@ -18,7 +18,8 @@ const ImgButtonLabel = styled.label`
   height: 2.5em;
   margin: 2% 4%;
   border-radius: 0.5em;
-  background-color: #667080;
+  background-color: ${(props) =>
+    props.previewNum === 5 ? 'lightgray' : '#667080'};
   color: #fff;
   text-align: center;
   cursor: pointer;
@@ -38,6 +39,7 @@ const PreviewImgBox = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 0.5em;
+  position: relative;
 `;
 const PreviewImg = styled.img`
   width: 100%;
@@ -45,6 +47,13 @@ const PreviewImg = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 0.5em;
+`;
+
+const RemovePreviewBtn = styled.div`
+  position: absolute;
+  top: -10%;
+  left: 75%;
+  z-index: 10;
 `;
 
 interface mountainDataType {
@@ -111,7 +120,10 @@ const UploadPost = () => {
 
         fileReader.onload = function () {
           previews[i] = fileReader.result;
-          setPreviewImg([...previews]);
+
+          [...previews].length > 5
+            ? alert('이미지는 최대 5개까지 업로드할 수 있어요.')
+            : setPreviewImg([...previews]);
         };
 
         fileReader.readAsDataURL(file);
@@ -157,19 +169,24 @@ const UploadPost = () => {
                     src={img ? img.toString() : ''}
                     alt={`preview-img-${i}`}
                   />
-                  <div onClick={() => removeImg(i)}>
+                  <RemovePreviewBtn onClick={() => removeImg(i)}>
                     <img
-                      src='/assets/images/close.svg'
+                      src='/assets/images/closeBtn.svg'
                       alt='삭제'
                     />
-                  </div>
+                  </RemovePreviewBtn>
                 </PreviewImgBox>
               ))}
             </PreviewImgContainer>
           ) : (
             ''
           )}
-          <ImgButtonLabel htmlFor='img2'>사진 선택하기</ImgButtonLabel>
+          <ImgButtonLabel
+            htmlFor='img2'
+            previewNum={previewImg.length}
+          >
+            사진 선택하기
+          </ImgButtonLabel>
           <PostInput
             type='file'
             id='img2'
@@ -177,6 +194,7 @@ const UploadPost = () => {
             accept='image/*'
             onChange={uploadFile}
             multiple
+            disabled={previewImg.length === 5}
           />
         </div>
         <TextArea
