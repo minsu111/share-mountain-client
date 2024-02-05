@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from '../../components/common/buttons';
 import TextArea from '../../components/upload/textArea';
 import MountainCard from '../../components/home/mountainCard';
+import SearchMountain from '../../components/upload/searchMountain';
 
 const PostInput = styled.input`
   display: none;
@@ -145,7 +146,8 @@ const UploadPost = () => {
         method='POST'
         encType='multipart/form-data'
       >
-        {mountainData?.map((c: mountainDataType) => (
+        <SearchMountain />
+        {/* {mountainData?.map((c: mountainDataType) => (
           <div key={c._id}>
             <input
               type='radio'
@@ -156,8 +158,7 @@ const UploadPost = () => {
             />
             <label htmlFor={c.mountainName}> {c.mountainName}</label>
           </div>
-        ))}
-        <MountainCard mountain={selectedMountain} />
+        ))} */}
 
         <div>
           {previewImg.length > 0 ? (
@@ -202,12 +203,13 @@ const UploadPost = () => {
           name='post_text'
           placeholder='본문을 입력해주세요.'
         />
-
-        <Button
-          type={'submit'}
-          btnWidth={'long'}
-          btnText={'게시물 올리기'}
-        />
+        <div>
+          <Button
+            type={'submit'}
+            btnWidth={'long'}
+            btnText={'게시물 올리기'}
+          />
+        </div>
       </form>
     </div>
   );
