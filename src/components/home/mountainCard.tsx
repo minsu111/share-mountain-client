@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
   width: 100%;
-  height: 12vh;
+  height: 5.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@ const CardImgWrapper = styled.div`
 
 const CardImg = styled.img`
   width: 68%;
-  height: 75%;
+  height: 68%;
   border-radius: 0.5em;
 `;
 
