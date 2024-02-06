@@ -5,13 +5,14 @@ import { origin_URL } from '../../App';
 import axios from 'axios';
 
 const MountainListContainer = styled.div`
-  width: 100%;
+  width: 94%;
   height: 14vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* gap: 3%; */
+  gap: 3%;
   overflow-x: auto;
+  padding: 0 3%;
 
   &::-webkit-scrollbar {
     display: none;

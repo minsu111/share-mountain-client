@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { origin_URL } from '../../App';
-import axios from 'axios';
 import Button from '../../components/common/buttons';
 import TextArea from '../../components/upload/textArea';
-import MountainCard from '../../components/home/mountainCard';
 import SearchMountain from '../../components/upload/searchMountain';
 
 const PostInput = styled.input`
@@ -57,59 +55,14 @@ const RemovePreviewBtn = styled.div`
   z-index: 10;
 `;
 
-interface mountainDataType {
-  _id: string;
-  mountainId: number;
-  mountainName: string;
-  mountainLevel: string;
-  mountainAddress: string;
-  mountainImgURL: string;
-  mountainLikes: number;
-}
-
 const UploadPost = () => {
-  const [mountainData, setMountainData] = useState<mountainDataType[]>([]);
-  const [selectedMountain, setSelectedMountain] = useState<mountainDataType>();
+  const [selectedMountain, setSelectedMountain] = useState('');
   const [previewImg, setPreviewImg] = useState<(string | ArrayBuffer | null)[]>(
     []
   );
 
-  useEffect(() => {
-    const getMountainData = async () => {
-      try {
-        const response = await axios.get(`${origin_URL}/mountain`);
-        console.log(response.data);
-
-        setMountainData(response.data);
-      } catch (error) {
-        console.error('Error fetching mountain data:', error);
-      }
-    };
-    getMountainData();
-  }, []);
-
-  const handleSelectMountain = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filteredData = mountainData.filter(
-      (mountain) => mountain.mountainName === e.target.value
-    );
-    const filteredMountain = filteredData[0];
-    setSelectedMountain(filteredMountain);
-  };
-
-  // function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
-  //   const fileArr = e.target.files;
-
-  //   const fileRead = new FileReader();
-  //   fileRead.onload = function () {
-  //     setPreviewImg(fileRead.result);
-  //     console.log(previewImg);
-  //   };
-
-  //   fileArr && fileRead.readAsDataURL(fileArr[0]);
-  // }
-
   //  여러 장의 이미지 업로드
-  function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
+  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileArr = e.target.files;
 
     if (fileArr) {
@@ -131,35 +84,30 @@ const UploadPost = () => {
         fileReaders.push(fileReader);
       });
     }
-  }
+  };
 
-  function removeImg(index: number) {
+  const removeImg = (index: number) => {
     const removePreviewImg = [...previewImg];
     removePreviewImg.splice(index, 1);
     setPreviewImg(removePreviewImg);
-  }
+  };
+
+  const handleSelectMountain = (mountainNameInfo: string) => {
+    setSelectedMountain(mountainNameInfo);
+  };
 
   return (
     <div>
       <form
-        action={`${origin_URL}/addPost`}
+        action={`${origin_URL}/addPost/${selectedMountain}`}
         method='POST'
         encType='multipart/form-data'
       >
-        <SearchMountain />
-        {/* {mountainData?.map((c: mountainDataType) => (
-          <div key={c._id}>
-            <input
-              type='radio'
-              name='select_mountain'
-              id={c.mountainName}
-              value={c.mountainName}
-              onChange={handleSelectMountain}
-            />
-            <label htmlFor={c.mountainName}> {c.mountainName}</label>
-          </div>
-        ))} */}
-
+        <SearchMountain
+          onSelectMountain={handleSelectMountain}
+          id='select_mountain'
+          name='select_mountain'
+        />
         <div>
           {previewImg.length > 0 ? (
             <PreviewImgContainer>

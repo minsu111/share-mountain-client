@@ -39,7 +39,7 @@ const CardImgWrapper = styled.div`
 
 const CardImg = styled.img`
   width: 68%;
-  height: 75%;
+  height: 68%;
   border-radius: 0.5em;
 `;
 
