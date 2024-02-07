@@ -12,6 +12,8 @@ const TextAreaBox = styled.textarea`
   height: 8em;
   background-color: #e1e1e1;
   border-radius: 0.5em;
+
+  font-family: 'PretendardLight', sans-serif;
 `;
 
 interface TextAreaProps {
