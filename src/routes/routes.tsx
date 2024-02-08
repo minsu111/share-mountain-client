@@ -5,6 +5,8 @@ import Home from '../pages/home/home';
 import Mountain from '../pages/mountain/mountain';
 import UploadPost from '../pages/uploadPost/uploadPost';
 import AddMountain from '../pages/admin/addMountain';
+import Login from '../pages/auth/login';
+import SignUp from '../pages/auth/signUp';
 
 const AppRouter = () => {
   return (
@@ -26,6 +28,14 @@ const AppRouter = () => {
           <Route
             path='/upload/mountain'
             element={<AddMountain />}
+          />
+          <Route
+            path='/login'
+            element={<Login />}
+          />
+          <Route
+            path='/signUp'
+            element={<SignUp />}
           />
         </Routes>
       </Layout>
