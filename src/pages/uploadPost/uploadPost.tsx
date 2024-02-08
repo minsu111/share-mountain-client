@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { origin_URL } from '../../App';
-import Button from '../../components/common/buttons';
+import Button from '../../components/common/button';
 import TextArea from '../../components/upload/textArea';
 import SearchMountain from '../../components/upload/searchMountain';
 

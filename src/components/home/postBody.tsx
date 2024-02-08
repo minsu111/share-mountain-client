@@ -20,6 +20,7 @@ const PostBodyText = styled.div`
 const ShowMoreBtn = styled.span`
   font-size: 0.9em;
   color: #6c6c6c;
+  cursor: pointer;
 `;
 
 interface PostBodyType {
