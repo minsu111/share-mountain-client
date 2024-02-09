@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import InputBox2 from '../../components/common/inputType2';
+import InputBox2 from '../../components/common/inputBox2';
 import Button from '../../components/common/button';
+import { origin_URL } from '../../App';
 
 const LoginContainer = styled.div`
   width: 100%;
@@ -11,7 +12,7 @@ const LoginContainer = styled.div`
 `;
 const LoginTitle = styled.div`
   width: 90%;
-  height: 20%;
+  height: 18%;
   padding: 5%;
 
   :first-child {
@@ -26,13 +27,20 @@ const LoginTitle = styled.div`
 const LoginInputBox = styled.div`
   width: 100%;
   height: 34%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2%;
 
   form {
-    height: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 
@@ -68,23 +76,28 @@ const Login = () => {
         <div>main main main main main</div>
       </LoginTitle>
       <LoginInputBox>
-        <form>
-          <InputBox2
-            type='text'
-            name='id_input'
-            placeholder='이메일(아이디)'
-          />
-          <InputBox2
-            type='number'
-            name='pw_input'
-            placeholder='비밀번호'
+        <form
+          action={`${origin_URL}/login`}
+          method='POST'
+        >
+          <div>
+            <InputBox2
+              type='text'
+              name='username'
+              placeholder='이메일(아이디)'
+            />
+            <InputBox2
+              type='password'
+              name='password'
+              placeholder='비밀번호'
+            />
+          </div>
+          <Button
+            type='submit'
+            btnWidth='long'
+            btnText='로그인'
           />
         </form>
-        <Button
-          type='submit'
-          btnWidth='long'
-          btnText='로그인'
-        />
       </LoginInputBox>
       <EmailSignUpBtn>
         <button onClick={handleEmailSignUpBtn}>이메일 회원가입</button>
