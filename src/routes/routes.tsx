@@ -7,6 +7,7 @@ import UploadPost from '../pages/uploadPost/uploadPost';
 import AddMountain from '../pages/admin/addMountain';
 import Login from '../pages/auth/login';
 import SignUp from '../pages/auth/signUp';
+import MyPage from '../pages/myPage/myPage';
 
 const AppRouter = () => {
   return (
@@ -36,6 +37,10 @@ const AppRouter = () => {
           <Route
             path='/signUp'
             element={<SignUp />}
+          />
+          <Route
+            path='/myPage'
+            element={<MyPage />}
           />
         </Routes>
       </Layout>

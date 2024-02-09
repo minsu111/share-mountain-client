@@ -52,6 +52,9 @@ const Header = () => {
     case '/upload/post':
       headerText = '게시물 올리기';
       break;
+    case '/signUp':
+      headerText = '회원 가입';
+      break;
     default:
       headerText = '';
   }

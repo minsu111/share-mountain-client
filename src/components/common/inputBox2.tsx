@@ -7,7 +7,7 @@ const InputContainer = styled.div`
   height: 30%;
   display: flex;
   justify-content: center;
-  margin: 3% 0;
+  margin: 2.5% 0;
 `;
 const InputBox = styled.input`
   all: unset;
