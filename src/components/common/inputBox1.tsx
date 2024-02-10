@@ -21,12 +21,21 @@ const InputLabel = styled.label`
 const InputBox = styled.input`
   all: unset;
   padding: 0 3%;
-  width: 82%;
+  width: 86%;
   height: 2.7em;
   background-color: #eae9e9;
   border-radius: 10px;
   margin: 1.5% 0;
   font-size: 0.9em;
+`;
+
+const ValidationText = styled.div<{ validationText: string | undefined }>`
+  width: 88%;
+  text-align: left;
+  padding: 0 6%;
+  font-size: 0.8em;
+  color: ${(props) =>
+    props.validationText === '사용 가능한 이메일입니다.' ? 'green' : 'red'};
 `;
 
 interface InputProps {
@@ -35,9 +44,16 @@ interface InputProps {
   name: string;
   placeholder?: string;
   labelText?: string;
+  validationText?: string;
 }
 
-const InputBox1 = ({ type, name, placeholder, labelText }: InputProps) => {
+const InputBox1 = ({
+  type,
+  name,
+  placeholder,
+  labelText,
+  validationText,
+}: InputProps) => {
   return (
     <InputContainer>
       <InputLabel>{labelText}</InputLabel>
@@ -46,6 +62,9 @@ const InputBox1 = ({ type, name, placeholder, labelText }: InputProps) => {
         name={name}
         placeholder={placeholder}
       ></InputBox>
+      <ValidationText validationText={validationText}>
+        {validationText}
+      </ValidationText>
     </InputContainer>
   );
 };
