@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputBox1 from '../common/inputBox1';
 import styled from 'styled-components';
 
-const SignUpInfoContainer = styled.div`
+const SignUpInfoContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,13 +15,32 @@ const PasswordInput = styled.div`
 `;
 
 const SignUpInfo = () => {
+  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
+  const [nickName, setNickName] = useState('');
+  const [pw, setPw] = useState('');
+  const [pwCheck, setPwCheck] = useState('');
+
+  const [emailValid, setEmailValid] = useState(true);
+
+  const handleSignUpInput = () => {};
+
   return (
-    <SignUpInfoContainer>
+    <SignUpInfoContainer
+      action='/signUp'
+      method='POST'
+      id='singup_form'
+    >
       <InputBox1
         type='email'
         name='email_id'
         placeholder='이메일을 입력해주세요.'
         labelText='이메일(아이디)'
+        validationText={
+          emailValid
+            ? '사용 가능한 이메일입니다.'
+            : '이미 사용 중인 이메일입니다.'
+        }
       />
       <InputBox1
         type='text'
@@ -30,10 +49,10 @@ const SignUpInfo = () => {
         labelText='이름'
       />
       <InputBox1
-        type='tel'
-        name='phone_num'
-        placeholder='숫자만 입력해주세요.'
-        labelText='휴대폰 번호'
+        type='text'
+        name='nickname'
+        placeholder='닉네임을 입력해주세요.'
+        labelText='닉네임'
       />
       <PasswordInput>
         <InputBox1
