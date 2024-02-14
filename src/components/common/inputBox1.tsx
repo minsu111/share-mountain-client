@@ -1,5 +1,5 @@
 // 로그인 인풋
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from './button';
 
@@ -59,6 +59,9 @@ interface InputProps {
   labelText?: string;
   validationText?: string;
   verifyBtnText?: string;
+  required?: boolean;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputBox1 = ({
@@ -68,7 +71,21 @@ const InputBox1 = ({
   labelText,
   validationText,
   verifyBtnText,
+  required,
+  onBlur,
+  onChangeHandler,
 }: InputProps) => {
+  const [value, setValue] = useState('');
+  const [showValidationText, setShowValidationText] = useState(false);
+
+  // const checkInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setValue(e.target.value);
+  // };
+
+  const handleValidationText = () => {
+    setShowValidationText(true);
+  };
+
   return (
     <InputContainer>
       <InputLabel>{labelText}</InputLabel>
@@ -77,6 +94,9 @@ const InputBox1 = ({
           type={type}
           name={name}
           placeholder={placeholder}
+          onChange={onChangeHandler}
+          onBlur={onBlur}
+          required={required}
         ></InputBox>
         {verifyBtnText ? (
           <Button
@@ -87,10 +107,11 @@ const InputBox1 = ({
           />
         ) : null}
       </InputBoxWrapper>
-
-      <ValidationText validationText={validationText}>
-        {validationText}
-      </ValidationText>
+      {showValidationText ? (
+        <ValidationText validationText={validationText}>
+          {validationText}
+        </ValidationText>
+      ) : null}
     </InputContainer>
   );
 };
