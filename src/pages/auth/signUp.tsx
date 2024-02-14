@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SignUpInfo from '../../components/auth/signUpInfo';
+import SignUpForm from '../../components/auth/signUpForm';
 import Button from '../../components/common/button';
 
 const SignUpContainer = styled.div`
@@ -19,7 +19,7 @@ const SignUpBtnWrapper = styled.div`
 const SignUp = () => {
   return (
     <SignUpContainer>
-      <SignUpInfo />
+      <SignUpForm />
       <SignUpBtnWrapper>
         <Button
           type='submit'
