@@ -62,6 +62,7 @@ interface InputProps {
   required?: boolean;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBtn?: () => void;
 }
 
 const InputBox1 = ({
@@ -74,8 +75,9 @@ const InputBox1 = ({
   required,
   onBlur,
   onChangeHandler,
+  handleBtn,
 }: InputProps) => {
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
   const [showValidationText, setShowValidationText] = useState(false);
 
   // const checkInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,8 +85,8 @@ const InputBox1 = ({
   // };
 
   const handleValidationText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onBlur && onBlur(e);
-    setShowValidationText(true);
+    onBlur?.(e);
+    onBlur && setShowValidationText(true);
   };
 
   return (
@@ -104,10 +106,10 @@ const InputBox1 = ({
         ></InputBox>
         {verifyBtnText ? (
           <Button
-            type='submit'
+            type='button'
             btnWidth='short'
             btnText={verifyBtnText}
-            id='nickName_check'
+            handleBtn={handleBtn}
           />
         ) : null}
       </InputBoxWrapper>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import InputBox1 from '../common/inputBox1';
 import { origin_URL } from '../../App';
-import { emailRegEx } from '../../utils/utils';
+import { emailRegEx, nicknameRegEx } from '../../utils/utils';
 
 const SignUpInfoContainer = styled.form`
   width: 100%;
@@ -26,9 +26,10 @@ const SignUpForm = () => {
   const [pwCheck, setPwCheck] = useState('');
 
   const [emailValid, setEmailValid] = useState(false);
-  const [isDuplicated, setIsDuplicated] = useState(false);
+  const [isEmailDuplicated, setIsEmailDuplicated] = useState(false);
   const [nameValid, setNameValid] = useState(true);
   const [nickNameValid, setNickNameValid] = useState(false);
+  const [isNickDuplicated, setIsNickDuplicated] = useState(false);
   const [pwValid, setPwValid] = useState(true);
   const [pwCheckValid, setPwCheckValid] = useState(true);
   // const [validationText, setValidationText] = useState('');
@@ -42,7 +43,8 @@ const SignUpForm = () => {
         break;
 
       case 'nickname':
-        setNickNameValid;
+        setNickName(inputValue);
+        setNickNameValid(nicknameRegEx.test(e.target.value));
     }
   };
 
@@ -57,18 +59,42 @@ const SignUpForm = () => {
       );
       console.log(response.data);
       response.data === 'isDuplicated'
-        ? setIsDuplicated(true)
-        : setIsDuplicated(false);
+        ? setIsEmailDuplicated(true)
+        : setIsEmailDuplicated(false);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const validationtext = !emailValid
+  const handleNickNameInput = async () => {
+    if (!nicknameRegEx.test(nickName)) {
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `${origin_URL}/nicknameCheck/${nickName}`
+      );
+      console.log(response.data);
+      response.data === 'isDuplicated'
+        ? setIsNickDuplicated(true)
+        : setIsNickDuplicated(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const emailValidationText = !emailValid
     ? '이메일 형식을 확인해주세요.'
-    : isDuplicated
+    : isEmailDuplicated
     ? '이미 사용 중인 이메일입니다.'
     : '사용 가능한 이메일입니다.';
+
+  const nickNameValidationText = !nickNameValid
+    ? '닉네임 형식을 확인해주세요.'
+    : isNickDuplicated
+    ? '이미 사용 중인 닉네임입니다.'
+    : '사용 가능한 닉네임입니다.';
 
   return (
     <SignUpInfoContainer
@@ -81,7 +107,7 @@ const SignUpForm = () => {
         name='email_id'
         placeholder='이메일을 입력해주세요.'
         labelText='이메일(아이디)'
-        validationtext={validationtext}
+        validationtext={emailValidationText}
         onChangeHandler={handleSignUpInput}
         onBlur={handleEmailInput}
         required={true}
@@ -100,7 +126,8 @@ const SignUpForm = () => {
         placeholder='닉네임을 입력해주세요.'
         labelText='닉네임'
         verifyBtnText='중복 확인'
-        validationtext={nickNameValid ? '사용 가능한 닉네임입니다.' : ''}
+        handleBtn={handleNickNameInput}
+        validationtext={nickNameValidationText}
         onChangeHandler={handleSignUpInput}
         required={true}
       />
