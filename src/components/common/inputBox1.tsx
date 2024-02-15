@@ -37,15 +37,15 @@ const InputBox = styled.input`
   font-size: 0.9em;
 `;
 
-const ValidationText = styled.div<{ validationText: string | undefined }>`
+const ValidationText = styled.div<{ validationtext: string | undefined }>`
   width: 88%;
   text-align: left;
   padding: 0 6%;
   font-size: 0.8em;
   color: ${(props) =>
-    props.validationText &&
+    props.validationtext &&
     ['사용 가능한 이메일입니다.', '사용 가능한 닉네임입니다.'].includes(
-      props.validationText
+      props.validationtext
     )
       ? 'green'
       : 'red'};
@@ -57,7 +57,7 @@ interface InputProps {
   name: string;
   placeholder?: string;
   labelText?: string;
-  validationText?: string;
+  validationtext?: string;
   verifyBtnText?: string;
   required?: boolean;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -69,7 +69,7 @@ const InputBox1 = ({
   name,
   placeholder,
   labelText,
-  validationText,
+  validationtext,
   verifyBtnText,
   required,
   onBlur,
@@ -82,7 +82,8 @@ const InputBox1 = ({
   //   setValue(e.target.value);
   // };
 
-  const handleValidationText = () => {
+  const handleValidationText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onBlur && onBlur(e);
     setShowValidationText(true);
   };
 
@@ -95,7 +96,10 @@ const InputBox1 = ({
           name={name}
           placeholder={placeholder}
           onChange={onChangeHandler}
-          onBlur={onBlur}
+          onBlur={handleValidationText}
+          onFocus={() => {
+            setShowValidationText(false);
+          }}
           required={required}
         ></InputBox>
         {verifyBtnText ? (
@@ -108,8 +112,8 @@ const InputBox1 = ({
         ) : null}
       </InputBoxWrapper>
       {showValidationText ? (
-        <ValidationText validationText={validationText}>
-          {validationText}
+        <ValidationText validationtext={validationtext}>
+          {validationtext}
         </ValidationText>
       ) : null}
     </InputContainer>

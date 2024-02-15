@@ -26,12 +26,12 @@ const SignUpForm = () => {
   const [pwCheck, setPwCheck] = useState('');
 
   const [emailValid, setEmailValid] = useState(false);
-  const [isDuplicated, setIsDuplicated] = useState('');
+  const [isDuplicated, setIsDuplicated] = useState(false);
   const [nameValid, setNameValid] = useState(true);
   const [nickNameValid, setNickNameValid] = useState(false);
   const [pwValid, setPwValid] = useState(true);
   const [pwCheckValid, setPwCheckValid] = useState(true);
-  const [validationText, setValidationText] = useState('');
+  // const [validationText, setValidationText] = useState('');
 
   const handleSignUpInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -57,20 +57,18 @@ const SignUpForm = () => {
       );
       console.log(response.data);
       response.data === 'isDuplicated'
-        ? setIsDuplicated('1')
-        : setIsDuplicated('0');
+        ? setIsDuplicated(true)
+        : setIsDuplicated(false);
     } catch (e) {
       console.log(e);
     }
-
-    // if (!emailValid) {
-    //   setValidationText('이메일 형식을 확인해주세요.');
-    // } else if (isDuplicated) {
-    //   setValidationText('이미 사용 중인 이메일입니다.');
-    // } else {
-    //   setValidationText('사용 가능한 이메일입니다.');
-    // }
   };
+
+  const validationtext = !emailValid
+    ? '이메일 형식을 확인해주세요.'
+    : isDuplicated
+    ? '이미 사용 중인 이메일입니다.'
+    : '사용 가능한 이메일입니다.';
 
   return (
     <SignUpInfoContainer
@@ -83,15 +81,7 @@ const SignUpForm = () => {
         name='email_id'
         placeholder='이메일을 입력해주세요.'
         labelText='이메일(아이디)'
-        validationText={
-          !emailValid
-            ? '이메일 형식을 확인해주세요.'
-            : isDuplicated === '1'
-            ? '이미 사용 중인 이메일입니다.'
-            : emailValid && isDuplicated === '0'
-            ? '사용 가능한 이메일입니다.'
-            : ''
-        }
+        validationtext={validationtext}
         onChangeHandler={handleSignUpInput}
         onBlur={handleEmailInput}
         required={true}
@@ -110,7 +100,7 @@ const SignUpForm = () => {
         placeholder='닉네임을 입력해주세요.'
         labelText='닉네임'
         verifyBtnText='중복 확인'
-        validationText={nickNameValid ? '사용 가능한 닉네임입니다.' : ''}
+        validationtext={nickNameValid ? '사용 가능한 닉네임입니다.' : ''}
         onChangeHandler={handleSignUpInput}
         required={true}
       />
