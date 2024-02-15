@@ -31,14 +31,23 @@ interface BtnPropsType {
   btnText: string;
   form?: string;
   id?: string;
+  handleBtn?: () => void;
 }
-const Button = ({ type, btnWidth, btnText, form, id }: BtnPropsType) => {
+const Button = ({
+  type,
+  btnWidth,
+  btnText,
+  form,
+  id,
+  handleBtn,
+}: BtnPropsType) => {
   return (
     <ButtonBox
       type={type}
       btnwidth={btnWidth}
       form={form}
       id={id}
+      onClick={handleBtn}
     >
       {btnText}
     </ButtonBox>
