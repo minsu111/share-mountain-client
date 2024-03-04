@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -18,7 +18,11 @@ const PasswordInput = styled.div`
   height: auto;
 `;
 
-const SignUpForm = () => {
+interface SignUpFormType {
+  setIsAllValidated: Dispatch<SetStateAction<boolean>>;
+}
+
+const SignUpForm = ({ setIsAllValidated }: SignUpFormType) => {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [nickName, setNickName] = useState('');

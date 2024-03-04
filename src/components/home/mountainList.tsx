@@ -34,7 +34,7 @@ const MountainList = () => {
   useEffect(() => {
     const getMountainData = async () => {
       try {
-        const response = await axios.get(`${origin_URL}/mountain`);
+        const response = await axios.get(`${origin_URL}/mountain/mountains`);
         console.log(response.data);
         setMountainData(response.data);
       } catch (error) {

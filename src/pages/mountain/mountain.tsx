@@ -17,7 +17,7 @@ interface mountainDataType {
 
 const Mountain = () => {
   const [mountainData, setMountainData] = useState<mountainDataType>();
-  const { id } = useParams();
+  const { mountainName } = useParams();
 
   // const mountainData = MountainData.filter(
   //   (v) => v.mountainInfo.mountainId === Number(id)
@@ -26,7 +26,9 @@ const Mountain = () => {
   useEffect(() => {
     const getMountainData = async () => {
       try {
-        const response = await axios.get(`${origin_URL}/mountain/${id}`);
+        const response = await axios.get(
+          `${origin_URL}/mountain/${mountainName}`
+        );
         console.log(response.data);
         setMountainData(response.data);
       } catch (error) {
@@ -34,7 +36,7 @@ const Mountain = () => {
       }
     };
     getMountainData();
-  }, [id]);
+  }, [mountainName]);
 
   return (
     <>

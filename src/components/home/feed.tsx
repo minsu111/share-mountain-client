@@ -49,15 +49,18 @@ interface postDataType {
 
 const Feed = () => {
   const [postData, setPostData] = useState<postDataType[]>();
-  const { id } = useParams();
-  const mountainPostData = postData?.filter((v) => v.mountainInfo._id === id);
+  const { mountainName } = useParams();
+  // const mountainPostData = postData?.filter((v) => v.mountainInfo._id === id);
 
   const location = useLocation();
 
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const response = await axios.get(`${origin_URL}/posts`);
+        const response =
+          location.pathname === '/home'
+            ? await axios.get(`${origin_URL}/post/posts`)
+            : await axios.get(`${origin_URL}/post/${mountainName}`);
         console.log(response.data);
         setPostData(response.data);
       } catch (error) {
@@ -80,14 +83,14 @@ const Feed = () => {
           <MountainPostHeader>
             <HeaderContentsWrapper>
               <div>게시물</div>
-              <span>{mountainPostData?.length}개</span>
+              <span>{postData?.length}개</span>
             </HeaderContentsWrapper>
           </MountainPostHeader>
-          {mountainPostData?.length === 0 ? (
+          {postData?.length === 0 ? (
             <UpLoadPostBtn />
           ) : (
-            mountainPostData?.map((post, i) => (
-              <div key={post.mountainInfo._id}>
+            postData?.map((post) => (
+              <div key={post._id}>
                 <Post postData={post} />
               </div>
             ))

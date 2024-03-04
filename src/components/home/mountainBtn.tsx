@@ -57,7 +57,7 @@ interface MountainInfoType {
 const MountainBtn = ({ mountainInfo }: MountainInfoType) => {
   const navigate = useNavigate();
   const handleMountainBtn = () => {
-    navigate(`/mountain/${mountainInfo._id}`);
+    navigate(`/mountain/${mountainInfo.mountainName}`);
   };
 
   return (

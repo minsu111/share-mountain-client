@@ -77,7 +77,7 @@ const MountainCard = ({ mountain }: MountainType) => {
   const navigate = useNavigate();
   const handleMountainCardBtn = () => {
     location.pathname !== '/upload/post' &&
-      navigate(`/mountain/${mountain?._id}`);
+      navigate(`/mountain/${mountain?.mountainName}`);
   };
   const mountainLevel = Number(mountain?.mountainLevel).toLocaleString();
 
