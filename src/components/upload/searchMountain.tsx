@@ -64,7 +64,7 @@ const SearchMountain = ({
     if (e.target.value.length > 1)
       try {
         const response = await axios.get(
-          `${origin_URL}/search/${e.target.value}`
+          `${origin_URL}/mountain/search/${e.target.value}`
         );
         console.log(e.target.value);
         // setSearchKeyWord(e.target.value);

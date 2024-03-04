@@ -99,7 +99,7 @@ const UploadPost = () => {
   return (
     <div>
       <form
-        action={`${origin_URL}/addPost/${selectedMountain}`}
+        action={`${origin_URL}/post/add/${selectedMountain}`}
         method='POST'
         encType='multipart/form-data'
       >
