@@ -10,7 +10,7 @@ const AddMountain = () => {
   return (
     <div>
       <form
-        action={`${origin_URL}/addMountain`}
+        action={`${origin_URL}/mountain/add/mountainInfo`}
         method='POST'
         encType='multipart/form-data'
       >

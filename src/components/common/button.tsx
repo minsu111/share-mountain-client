@@ -31,6 +31,7 @@ interface BtnPropsType {
   btnText: string;
   form?: string;
   id?: string;
+  disabled?: boolean;
   handleBtn?: () => void;
 }
 const Button = ({
@@ -39,6 +40,7 @@ const Button = ({
   btnText,
   form,
   id,
+  disabled,
   handleBtn,
 }: BtnPropsType) => {
   return (
@@ -48,6 +50,7 @@ const Button = ({
       form={form}
       id={id}
       onClick={handleBtn}
+      disabled={disabled}
     >
       {btnText}
     </ButtonBox>

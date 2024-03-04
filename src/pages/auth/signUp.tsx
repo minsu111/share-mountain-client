@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import SignUpForm from '../../components/auth/signUpForm';
@@ -17,15 +17,18 @@ const SignUpBtnWrapper = styled.div`
 `;
 
 const SignUp = () => {
+  const [isAllValidated, setIsAllValidated] = useState(false);
+
   return (
     <SignUpContainer>
-      <SignUpForm />
+      <SignUpForm setIsAllValidated={setIsAllValidated} />
       <SignUpBtnWrapper>
         <Button
           type='submit'
           btnWidth='long'
           btnText='시작하기'
           form='singup_form'
+          disabled={isAllValidated}
         />
       </SignUpBtnWrapper>
     </SignUpContainer>

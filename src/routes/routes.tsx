@@ -8,6 +8,7 @@ import AddMountain from '../pages/admin/addMountain';
 import Login from '../pages/auth/login';
 import SignUp from '../pages/auth/signUp';
 import MyPage from '../pages/myPage/myPage';
+import Test from '../pages/test';
 
 const AppRouter = () => {
   return (
@@ -19,7 +20,7 @@ const AppRouter = () => {
             element={<Home />}
           />
           <Route
-            path='/mountain/:id'
+            path='/mountain/:mountainName'
             element={<Mountain />}
           />
           <Route
@@ -41,6 +42,10 @@ const AppRouter = () => {
           <Route
             path='/myPage'
             element={<MyPage />}
+          />
+          <Route
+            path='/test'
+            element={<Test />}
           />
         </Routes>
       </Layout>
