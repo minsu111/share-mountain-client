@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import Layout from '../components/layout/layout';
 import Home from '../pages/home/home';
 import Mountain from '../pages/mountain/mountain';
@@ -15,6 +20,11 @@ const AppRouter = () => {
     <Router>
       <Layout>
         <Routes>
+          <Route
+            path='/'
+            element={<Navigate to='/home' />}
+          />
+
           <Route
             path='/home'
             element={<Home />}
