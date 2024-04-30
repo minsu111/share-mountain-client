@@ -77,7 +77,7 @@ const Login = () => {
       </LoginTitle>
       <LoginInputBox>
         <form
-          action={`${origin_URL}/login`}
+          action={`${origin_URL}/user/login`}
           method='POST'
         >
           <div>

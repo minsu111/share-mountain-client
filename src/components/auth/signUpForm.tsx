@@ -59,7 +59,7 @@ const SignUpForm = ({ setIsAllValidated }: SignUpFormType) => {
 
     try {
       const response = await axios.get(
-        `${origin_URL}/emailCheck/${e.target.value}`
+        `${origin_URL}/user/emailCheck/${e.target.value}`
       );
       console.log(response.data);
       response.data === 'isDuplicated'
@@ -77,7 +77,7 @@ const SignUpForm = ({ setIsAllValidated }: SignUpFormType) => {
 
     try {
       const response = await axios.get(
-        `${origin_URL}/nicknameCheck/${nickName}`
+        `${origin_URL}/user/nicknameCheck/${nickName}`
       );
       console.log(response.data);
       response.data === 'isDuplicated'
@@ -102,7 +102,7 @@ const SignUpForm = ({ setIsAllValidated }: SignUpFormType) => {
 
   return (
     <SignUpInfoContainer
-      action={`${origin_URL}/signup`}
+      action={`${origin_URL}/user/signup`}
       method='POST'
       id='singup_form'
     >
