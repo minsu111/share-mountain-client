@@ -62,7 +62,7 @@ interface InputProps {
   required?: boolean;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleBtn?: () => void;
+  handleBtn?: () => void | boolean;
 }
 
 const InputBox1 = ({
@@ -89,6 +89,13 @@ const InputBox1 = ({
     onBlur && setShowValidationText(true);
   };
 
+  const combinedHandleBtn = () => {
+    if (handleBtn) {
+      handleBtn();
+    }
+    setShowValidationText(true);
+  };
+
   return (
     <InputContainer>
       <InputLabel>{labelText}</InputLabel>
@@ -109,7 +116,7 @@ const InputBox1 = ({
             type='button'
             btnWidth='short'
             btnText={verifyBtnText}
-            handleBtn={handleBtn}
+            handleBtn={combinedHandleBtn}
           />
         ) : null}
       </InputBoxWrapper>
