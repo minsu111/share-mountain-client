@@ -28,7 +28,7 @@ const SignUp = () => {
           btnWidth='long'
           btnText='시작하기'
           form='singup_form'
-          disabled={isAllValidated}
+          disabled={!isAllValidated}
         />
       </SignUpBtnWrapper>
     </SignUpContainer>
