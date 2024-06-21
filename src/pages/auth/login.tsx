@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 import InputBox2 from '../../components/common/inputBox2';
 import Button from '../../components/common/button';
-import { origin_URL } from '../../App';
+import { loginPostFetch } from '@/api/user/loginPostFetch';
+import { useUserStore } from '@/store/useUserStore';
 
 const LoginContainer = styled.div`
   width: 100%;
@@ -64,9 +65,27 @@ const EmailSignUpBtn = styled.div`
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setAccessToken, setUserInfo } = useUserStore();
 
   const handleEmailSignUpBtn = () => {
     navigate('/signUp');
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    try {
+      const response = await loginPostFetch({ email, password });
+      const { data } = response;
+      console.info(data);
+      setAccessToken(data.token);
+      setUserInfo({ ...data.user });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -76,14 +95,11 @@ const Login = () => {
         <div>main main main main main</div>
       </LoginTitle>
       <LoginInputBox>
-        <form
-          action={`${origin_URL}/user/login`}
-          method='POST'
-        >
+        <form onSubmit={handleLogin}>
           <div>
             <InputBox2
               type='text'
-              name='username'
+              name='email'
               placeholder='이메일(아이디)'
             />
             <InputBox2
