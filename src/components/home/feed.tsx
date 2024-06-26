@@ -61,7 +61,7 @@ const Feed = () => {
           location.pathname === '/home'
             ? await axios.get(`${origin_URL}/post/posts`)
             : await axios.get(`${origin_URL}/post/${mountainName}`);
-        console.log(response.data);
+        // console.log(response.data);
         setPostData(response.data);
       } catch (error) {
         console.error('Error fetching mountain data:', error);

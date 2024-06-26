@@ -91,8 +91,8 @@ const Login = () => {
   return (
     <LoginContainer>
       <LoginTitle>
-        <div>sub</div>
-        <div>main main main main main</div>
+        <div>산을 나누다</div>
+        <div>Share Mountain</div>
       </LoginTitle>
       <LoginInputBox>
         <form onSubmit={handleLogin}>

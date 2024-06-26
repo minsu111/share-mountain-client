@@ -15,7 +15,7 @@ interface PostingImgType {
 
 const PostImgSlider = ({ postImg }: PostingImgType) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log('currentIndex', currentIndex);
+  // console.log('currentIndex', currentIndex);
 
   const renderSlides = postImg.map((image: string, i) => (
     <div key={image[i]}>
