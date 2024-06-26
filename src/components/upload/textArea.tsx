@@ -20,14 +20,16 @@ interface TextAreaProps {
   id: string;
   name: string;
   placeholder: string;
+  onchange: () => void;
 }
 
-const TextArea = ({ id, name, placeholder }: TextAreaProps) => {
+const TextArea = ({ id, name, placeholder, onchange }: TextAreaProps) => {
   return (
     <TextAreaBox
       id={id}
       name={name}
       placeholder={placeholder}
+      onChange={onchange}
     ></TextAreaBox>
   );
 };

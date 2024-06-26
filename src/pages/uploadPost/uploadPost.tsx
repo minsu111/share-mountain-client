@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { origin_URL } from '../../App';
 import Button from '../../components/common/button';
 import TextArea from '../../components/upload/textArea';
 import SearchMountain from '../../components/upload/searchMountain';
+import { useUserStore } from '@/store/useUserStore';
+import { uploadPostFetch } from '@/api/post/uploadPostFetch';
+import { usePostStore } from '@/store/usePostStore';
+import { useNavigate } from 'react-router-dom';
 
 const PostInput = styled.input`
   display: none;
@@ -60,24 +64,66 @@ const UploadPost = () => {
   const [previewImg, setPreviewImg] = useState<(string | ArrayBuffer | null)[]>(
     []
   );
+  const [files, setFiles] = useState<File[]>([]);
+  const navigate = useNavigate();
+
+  const handleSelectMountain = (mountainNameInfo: string) => {
+    setSelectedMountain(mountainNameInfo);
+  };
+
+  const { setPostBody } = usePostStore();
+
+  const postBody = usePostStore((state) => state.postBody || '');
+  const userNickName = useUserStore((state) => state.user?.nickName) || '';
 
   //  여러 장의 이미지 업로드
-  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadFile = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('postBody', postBody);
+
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+    }
+
+    // 실제 업로드 함수 호출 부분
+
+    try {
+      await uploadPostFetch(formData, selectedMountain, userNickName);
+      navigate('/home');
+    } catch (error) {
+      console.error(error);
+    }
+
+    //formData key, value 확인
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileArr = e.target.files;
 
     if (fileArr) {
       const fileReaders: FileReader[] = [];
       const previews: (string | ArrayBuffer | null)[] = [];
+      const newFiles = Array.from(fileArr);
 
-      Array.from(fileArr).forEach((file, i) => {
+      newFiles.forEach((file, i) => {
         const fileReader = new FileReader();
 
         fileReader.onload = function () {
           previews[i] = fileReader.result;
 
-          [...previews].length > 5
-            ? alert('이미지는 최대 5개까지 업로드할 수 있어요.')
-            : setPreviewImg([...previews]);
+          if ([...previews].length > 5) {
+            alert('이미지는 최대 5개까지 업로드할 수 있어요.');
+          } else {
+            setPreviewImg([...previews]);
+            setFiles([...files, ...newFiles]);
+          }
         };
 
         fileReader.readAsDataURL(file);
@@ -88,18 +134,24 @@ const UploadPost = () => {
 
   const removeImg = (index: number) => {
     const removePreviewImg = [...previewImg];
+    const updatedFiles = [...files];
+
     removePreviewImg.splice(index, 1);
+    updatedFiles.splice(index, 1);
+
     setPreviewImg(removePreviewImg);
+    setFiles(updatedFiles);
   };
 
-  const handleSelectMountain = (mountainNameInfo: string) => {
-    setSelectedMountain(mountainNameInfo);
+  const handleTextArea = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPostBody(e.target.value);
   };
 
   return (
     <div>
       <form
-        action={`${origin_URL}/post/add/${selectedMountain}`}
+        onSubmit={uploadFile}
+        // action={`${origin_URL}/post/add/${selectedMountain}/${userNickName}`}
         method='POST'
         encType='multipart/form-data'
       >
@@ -141,7 +193,7 @@ const UploadPost = () => {
             id='img2'
             name='img2'
             accept='image/*'
-            onChange={uploadFile}
+            onChange={handleFileChange}
             multiple
             disabled={previewImg.length === 5}
           />
@@ -150,6 +202,7 @@ const UploadPost = () => {
           id='post_text'
           name='post_text'
           placeholder='본문을 입력해주세요.'
+          onchange={handleTextArea}
         />
         <div>
           <Button
