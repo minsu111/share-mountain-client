@@ -6,6 +6,9 @@ import InputBox2 from '../../components/common/inputBox2';
 import Button from '../../components/common/button';
 import { loginPostFetch } from '@/api/user/loginPostFetch';
 import { useUserStore } from '@/store/useUserStore';
+import ModalBox from '@/components/common/modalBox';
+import { useModalStore } from '@/store/useModalStore';
+import { useToastStore } from '@/store/useToastStore';
 
 const LoginContainer = styled.div`
   width: 100%;
@@ -66,6 +69,9 @@ const EmailSignUpBtn = styled.div`
 const Login = () => {
   const navigate = useNavigate();
   const { setAccessToken, setUserInfo } = useUserStore();
+  const { setModal, onOpen, onClose } = useModalStore();
+
+  const { setToast } = useToastStore();
 
   const handleEmailSignUpBtn = () => {
     navigate('/signUp');
@@ -80,11 +86,21 @@ const Login = () => {
     try {
       const response = await loginPostFetch({ email, password });
       const { data } = response;
-      console.info(data);
       setAccessToken(data.token);
       setUserInfo({ ...data.user });
+      setToast('로그인 성공');
+      navigate('/home');
     } catch (error) {
       console.error(error);
+      setModal(
+        <ModalBox
+          type='alert'
+          titleText='로그인 실패'
+          subText='없는 아이디이거나 비밀번호가 일치하지 않습니다. 다시 시도해주세요.'
+          onClick={onClose}
+        />
+      );
+      onOpen();
     }
   };
 
